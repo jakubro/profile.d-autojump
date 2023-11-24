@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $- == *i* ]]; then
+
+  __profile_d_load__ ~/.autojump/share/autojump/autojump.bash
+
+  if command -v j &>/dev/null; then
+    j --purge >/dev/null
+  fi
+
+fi
