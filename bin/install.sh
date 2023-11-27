@@ -1,22 +1,18 @@
 #!/bin/bash
-set -eo pipefail
 
 log_info "Installing/Updating autojump..."
 
-__J_DIR__=$(mktemp -d /tmp/profile.d.XXXXXXXXXX)
+dir=$(mktemp -d /tmp/profile.d.XXXXXXXXXX) || exit 1
 
-(
+cd "$dir" &&
+  git clone https://github.com/wting/autojump . &&
+  SHELL=bash ./install.py -d ~/.autojump &&
+  log_info "You can safely ignore any instructions printed above"
 
-  cd "$__J_DIR__"
-  git clone https://github.com/wting/autojump .
-  SHELL=bash ./install.py -d ~/.autojump
-  command rm -rf "$__J_DIR__"
+code=$?
 
-) || (
+rm -rf "$dir" || exit 1
 
-  command rm -rf "$__J_DIR__"
+if [ "$code" != 0 ]; then
   exit 1
-
-)
-
-log_info "You can safely ignore any instructions printed above"
+fi
