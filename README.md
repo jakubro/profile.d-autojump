@@ -61,7 +61,6 @@ The plugin:
 
 ## Requirements
 
-- Git (automatically installed by profile.d if missing)
 - Python (for autojump installation)
 
 ## Contributing
