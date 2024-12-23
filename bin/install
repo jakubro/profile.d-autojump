@@ -4,6 +4,8 @@ log_info "Installing/Updating autojump..."
 
 temp_dir=$(mktemp -d /tmp/profile.d.XXXXXXXXXX) || exit 1
 
+# todo: this requires python
+
 cd "$temp_dir" \
   && git clone --quiet https://github.com/wting/autojump . \
   && SHELL=bash ./install.py -d ~/.autojump \
